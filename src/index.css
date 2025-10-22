@@ -17,6 +17,12 @@ img {
   justify-content: space-between;
 }
 
+.searchContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .list {
   margin-top: 20px;
   list-style-type: none;
