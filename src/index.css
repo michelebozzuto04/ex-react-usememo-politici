@@ -11,6 +11,12 @@ img {
   aspect-ratio: 1/1;
 }
 
+.listHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .list {
   margin-top: 20px;
   list-style-type: none;

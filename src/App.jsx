@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 
 function PoliticianCard({ name, image, position, biography }) {
   return (
@@ -17,6 +17,7 @@ function PoliticianCard({ name, image, position, biography }) {
 function App() {
 
   const [politicians, setPoliticians] = useState([]);
+  const [search, setSearch] = useState('');
 
   const getPoliticians = async () => {
     const response = await fetch('http://localhost:3333/politicians');
@@ -24,15 +25,28 @@ function App() {
     setPoliticians(data);
   };
 
+  const searchResults = useMemo(() => {
+    return politicians.filter((p) => p.name.toLowerCase().includes(search) || p.biography.toLowerCase().includes(search));
+  }, [search, politicians])
+
   useEffect(() => {
     getPoliticians();
   }, []);
 
   return (
     <div className='container'>
-      <h1>Politicians</h1>
+      <div className='listHeader'>
+        <h1>Politicians</h1>
+
+        <input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          type='text'
+          placeholder='Search...'
+        />
+      </div>
       <ul className='list'>
-        {politicians.map((p) => {
+        {searchResults.map((p) => {
           return (
             <PoliticianCard
               key={p.id}
