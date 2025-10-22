@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 
-function PoliticianCard({ name, image, position, biography }) {
+const PoliticianCard = React.memo(({ name, image, position, biography }) => {
+  console.log(`${name} card rendered`)
   return (
     <div className='cardContainer'>
       <img src={image} />
@@ -12,7 +13,7 @@ function PoliticianCard({ name, image, position, biography }) {
       </div>
     </div>
   )
-}
+});
 
 function App() {
 
